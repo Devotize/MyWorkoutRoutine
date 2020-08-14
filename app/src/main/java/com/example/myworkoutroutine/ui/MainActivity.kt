@@ -35,6 +35,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.backdrop.*
 import java.io.ByteArrayOutputStream
 
+//second commit
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
