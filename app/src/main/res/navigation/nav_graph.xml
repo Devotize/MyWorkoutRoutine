@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstDayFragment">
+
+    <fragment
+        android:id="@+id/firstDayFragment"
+        android:name="com.example.myworkoutroutine.ui.fragment.FirstDayFragment"
+        android:label="fragment_first_day"
+        tools:layout="@layout/fragment_first_day" >
+        <action
+            android:id="@+id/action_firstDayFragment_to_firstDayFragment"
+            app:destination="@id/firstDayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondDayFragment"
+        android:name="com.example.myworkoutroutine.ui.fragment.SecondDayFragment"
+        android:label="SecondDayFragment" />
+</navigation>

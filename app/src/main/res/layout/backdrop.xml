@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/AppTheme.Button.TextButton"
+        android:id="@+id/monday_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/monday_day_1"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/AppTheme.Button.TextButton"
+        android:id="@+id/tuesday_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tuesday_day_2"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/AppTheme.Button.TextButton"
+        android:id="@+id/wednesday_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wednesday_day_3"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/AppTheme.Button.TextButton"
+        android:id="@+id/thursday_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/thursday_day_4"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/AppTheme.Button.TextButton"
+        android:id="@+id/friday_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/friday_day_5"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/AppTheme.Button.TextButton"
+        android:id="@+id/saturday_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saturday_day_6"/>
+
+
+</merge>

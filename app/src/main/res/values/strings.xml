@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MyWorkoutRoutine</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="monday_day_1">Monday(Day 1)</string>
+    <string name="tuesday_day_2">Tuesday(Day 2)</string>
+    <string name="wednesday_day_3">Wednesday(Day 3)</string>
+    <string name="thursday_day_4">Thursday(Day 4)</string>
+    <string name="friday_day_5">Friday(Day 5)</string>
+    <string name="saturday_day_6">Saturday(Day 6)</string>
+    <string name="abs">Abs</string>
+    <string name="chest">Chest</string>
+    <string name="triceps">Triceps</string>
+    <string name="legs">Legs</string>
+    <string name="back">Back</string>
+    <string name="biceps">Biceps</string>
+    <string name="shoulders">Shoulders</string>
+
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/muscle_card_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/muscle_group_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/muscle_group_image_view"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="8dp"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/muscle_group_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chest"
+            style="@style/AppTheme.MuscleGroupTitle"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:id="@+id/expand_exercises_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:theme="@style/MuscleItemButtonStyle"
+            android:layout_gravity="bottom|center"/>
+
+
+<!--        <Button-->
+<!--            android:id="@+id/add_new_exercise_button"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_gravity="bottom|end"-->
+<!--            android:theme="@style/MuscleItemButtonStyle"-->
+<!--            android:background="@drawable/ic_baseline_add_24"-->
+<!--            android:layout_margin="8dp"-->
+<!--            />-->
+
+    </FrameLayout>
+
+</com.google.android.material.card.MaterialCardView>
