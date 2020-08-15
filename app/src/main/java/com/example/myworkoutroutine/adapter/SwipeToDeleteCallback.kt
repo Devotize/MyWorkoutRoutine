@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myworkoutroutine.R
 import com.example.myworkoutroutine.ui.fragment.FirstDayFragment
+import com.example.myworkoutroutine.ui.items.ExerciseItem
 import com.example.myworkoutroutine.ui.items.MuscleItem
 import com.xwray.groupie.TouchCallback
 import kotlinx.android.synthetic.main.muscle_group_card.view.*
@@ -21,10 +22,15 @@ abstract class SwipeToDeleteCallback(val context: Context): TouchCallback() {
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
-        val swapFlag = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        val swipeFlagMuscleItem = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        val swipeFlagExerciseItem = 0
         val dragFlag = ItemTouchHelper.DOWN or ItemTouchHelper.UP
         Log.d("SwipeToDeleteCallback","Item view type: ${viewHolder.itemViewType}")
-        return makeMovementFlags(dragFlag, swapFlag)
+        return if (viewHolder.itemViewType == MuscleItem(context).viewType) {
+            makeMovementFlags(dragFlag, swipeFlagMuscleItem)
+        } else {
+            ItemTouchHelper.Callback.makeMovementFlags(0, swipeFlagExerciseItem)
+        }
     }
 
     override fun onMove(

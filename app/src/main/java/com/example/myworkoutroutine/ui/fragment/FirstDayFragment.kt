@@ -92,6 +92,11 @@ class FirstDayFragment : Fragment(){
 
         adapter.addAll(listOfExpandableGroup)
 
+        adapter.setOnItemClickListener { item, view ->
+            Log.d("FirstDayFragment", "Clicked on item: $item, view: $view")
+            val exerciseItem: ExerciseItem = item as ExerciseItem
+        }
+
         val onSwipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -155,6 +160,7 @@ class FirstDayFragment : Fragment(){
             exercisesList.forEach {
                 val image = fromByteArrayToDrawable(it.image)
                 val exerciseItem = ExerciseItem(it.name, image, it.duration)
+                Log.d("FirstDayFragment", "Exercise item view type: ${exerciseItem.viewType}")
                 exerciseSection.add(exerciseItem)
             }
 

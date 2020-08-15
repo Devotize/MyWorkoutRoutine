@@ -13,7 +13,7 @@ import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.muscle_group_card.view.*
 
-class MuscleItem(context: Context, private val muscle: String): Item(), ExpandableItem {
+class MuscleItem(context: Context, private val muscle: String = ""): Item(), ExpandableItem {
 
     private lateinit var expandableGroup: ExpandableGroup
 
@@ -56,6 +56,10 @@ class MuscleItem(context: Context, private val muscle: String): Item(), Expandab
         } else {
             R.drawable.ic_baseline_keyboard_arrow_down_24
         }
+    }
+
+    override fun isClickable(): Boolean {
+        return false
     }
 
 }
