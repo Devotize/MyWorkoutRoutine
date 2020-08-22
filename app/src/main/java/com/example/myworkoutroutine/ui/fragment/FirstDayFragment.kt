@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.os.health.TimerStat
 import android.util.Log
 import android.view.*
 import android.widget.Toast
@@ -29,8 +30,11 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.*
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import kotlinx.android.synthetic.main.exercise_item_layout.view.*
 import kotlinx.android.synthetic.main.fragment_first_day.*
 import kotlinx.android.synthetic.main.muscle_group_card.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FirstDayFragment : Fragment(){
@@ -47,7 +51,6 @@ class FirstDayFragment : Fragment(){
         val view = inflater.inflate(R.layout.fragment_first_day, container, false)
         Log.d("FirstDayFragment", "View: view")
         adapter = GroupAdapter()
-
 
         val toolbar = activity?.findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
         toolbar?.title = currentDay
@@ -88,13 +91,14 @@ class FirstDayFragment : Fragment(){
         first_day_recycler_view.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         first_day_recycler_view.layoutManager = layoutManager
-        var isCompleted = false
+        var isCompleted = true
 
         adapter.addAll(listOfExpandableGroup)
 
         adapter.setOnItemClickListener { item, view ->
             Log.d("FirstDayFragment", "Clicked on item: $item, view: $view")
             val exerciseItem: ExerciseItem = item as ExerciseItem
+
         }
 
         val onSwipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
@@ -106,15 +110,16 @@ class FirstDayFragment : Fragment(){
 
                 if (direction == ItemTouchHelper.RIGHT) {
 
-                    isCompleted = !isCompleted
+//                    isCompleted = !isCompleted
                     if (isCompleted) {
-                        viewHolder.itemView.muscle_group_frame_layout.setBackgroundColor(context.resources.getColor(R.color.colorPrimaryDark))
+                        viewHolder.itemView.muscle_group_frame_layout.setBackgroundColor(Color.GREEN)
                         Toast.makeText(context, "${viewHolder.itemView.muscle_group_text_view.text} comlepted", Toast.LENGTH_SHORT).show()
                     } else {
                         viewHolder.itemView.muscle_group_frame_layout.setBackgroundColor(Color.GREEN)
                     }
                     adapter.notifyItemChanged(viewHolder.adapterPosition)
-
+                    adapter.notifyItemChanged(viewHolder.adapterPosition)
+                    adapter.getItem(viewHolder.adapterPosition).notifyChanged()
                 }
             }
 

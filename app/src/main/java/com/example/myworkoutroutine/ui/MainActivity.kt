@@ -1,6 +1,7 @@
 package com.example.myworkoutroutine.ui
 
 import android.Manifest
+import android.app.ActionBar
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
@@ -9,6 +10,7 @@ import android.content.Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
 import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -16,21 +18,31 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
+import androidx.core.view.OnApplyWindowInsetsListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.marginBottom
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.myworkoutroutine.navigation.NavigationIconClickListener
 import com.example.myworkoutroutine.R
 import com.example.myworkoutroutine.database.entity.Exercise
+import com.example.myworkoutroutine.database.entity.MuscleGroupModel
 import com.example.myworkoutroutine.database.entity.ToolbarImageEntity
 import com.example.myworkoutroutine.database.repo.MuscleGroupRepo
+import com.example.myworkoutroutine.helperЕ.MuscleGroup
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.backdrop.*
 import java.io.ByteArrayOutputStream
@@ -53,8 +65,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        addBottomMarginForLayout()
         setSupportActionBar(toolbar)
         context = applicationContext
         navController = findNavController(R.id.nav_host_fragment)
@@ -70,6 +84,18 @@ class MainActivity : AppCompatActivity() {
             pickImageFromDialog()
         }
 
+        createDefaultSchedule()
+
+    }
+
+    private fun addBottomMarginForLayout() {
+        val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.MATCH_PARENT)
+            layoutParams.setMargins(0, 0, 0, resources.getDimensionPixelOffset(resourceId))
+            main_coordinat_layout.layoutParams = layoutParams
+        }
     }
 
     private fun initNavigationIcon() {
@@ -420,6 +446,89 @@ class MainActivity : AppCompatActivity() {
             "Background",
             null)
         return Uri.parse(path)
+    }
+
+    private fun createDefaultSchedule() {
+        //check if database is empty
+
+        val muscles = MuscleGroupRepo(context).getAllSavedMusclesGroups()
+        Log.d("MainActivity", "Muscles: $muscles")
+
+        if (muscles.isEmpty()) {
+            val listOfMuscles = mutableListOf<MuscleGroupModel>()
+            //add muscles
+
+            listOf<MuscleGroupModel>(
+                MuscleGroupModel(
+                day = getString(R.string.monday_day_1),
+                muscleName = MuscleGroup.ABS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.monday_day_1),
+                    muscleName = MuscleGroup.CHEST.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.monday_day_1),
+                    muscleName = MuscleGroup.TRICEPS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.tuesday_day_2),
+                    muscleName = MuscleGroup.ABS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.tuesday_day_2),
+                    muscleName = MuscleGroup.LEGS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.wednesday_day_3),
+                    muscleName = MuscleGroup.BACK.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.wednesday_day_3),
+                    muscleName = MuscleGroup.BICEPS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.wednesday_day_3),
+                    muscleName = MuscleGroup.SHOULDERS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.thursday_day_4),
+                    muscleName = MuscleGroup.ABS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.thursday_day_4),
+                    muscleName = MuscleGroup.CHEST.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.thursday_day_4),
+                    muscleName = MuscleGroup.TRICEPS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.friday_day_5),
+                    muscleName = MuscleGroup.ABS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.friday_day_5),
+                    muscleName = MuscleGroup.LEGS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.saturday_day_6),
+                    muscleName = MuscleGroup.BACK.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.saturday_day_6),
+                    muscleName = MuscleGroup.BICEPS.muscleName
+                ),
+                MuscleGroupModel(
+                    day = getString(R.string.saturday_day_6),
+                    muscleName = MuscleGroup.SHOULDERS.muscleName
+                )
+            ).forEach {
+                MuscleGroupRepo(context).insertNewMuscleGroup(it)
+            }
+
+        }
+
     }
 
 }
