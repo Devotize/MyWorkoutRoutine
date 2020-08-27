@@ -19,6 +19,7 @@ class RecyclerMusclesAdapter(private val context: Context) {
         val items: Array<String> = Array(MuscleGroup.values().size) { it ->
             MuscleGroup.values().get(it).muscleName
         }
+        alertBuilder.setTitle("Add Muscle")
 
         Log.d(TAG, "Items: $items")
 

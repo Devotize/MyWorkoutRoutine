@@ -17,13 +17,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
@@ -52,6 +51,7 @@ import java.io.ByteArrayOutputStream
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+    private lateinit var navigationIconClickListener: NavigationIconClickListener
 
     companion object {
         const val TAG = "MainActivity"
@@ -73,6 +73,19 @@ class MainActivity : AppCompatActivity() {
         context = applicationContext
         navController = findNavController(R.id.nav_host_fragment)
         currentDay = getString(R.string.monday_day_1)
+        navigationIconClickListener = NavigationIconClickListener(
+            this,
+            product_grid,
+            AccelerateDecelerateInterpolator(),
+            ContextCompat.getDrawable(
+                applicationContext,
+                R.drawable.ic_menu
+            ),
+            ContextCompat.getDrawable(
+                applicationContext,
+                R.drawable.ic_baseline_close_24
+            )
+        )
 
         initNavigationIcon()
         initNavigationItems()
@@ -89,30 +102,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addBottomMarginForLayout() {
-        val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
-                ConstraintLayout.LayoutParams.MATCH_PARENT)
-            layoutParams.setMargins(0, 0, 0, resources.getDimensionPixelOffset(resourceId))
-            main_coordinat_layout.layoutParams = layoutParams
+        val hasMenuKey = ViewConfiguration.get(applicationContext).hasPermanentMenuKey()
+        val hasBackKay = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK)
+        if (!hasMenuKey && !hasBackKay) {
+            val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+            if (resourceId > 0) {
+                val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
+                    ConstraintLayout.LayoutParams.MATCH_PARENT)
+                layoutParams.setMargins(0, 0, 0, resources.getDimensionPixelOffset(resourceId))
+                main_coordinat_layout.layoutParams = layoutParams
+            }
         }
+
     }
 
     private fun initNavigationIcon() {
         toolbar.setNavigationOnClickListener (
-            NavigationIconClickListener(
-                this,
-                product_grid,
-                AccelerateDecelerateInterpolator(),
-                ContextCompat.getDrawable(
-                    applicationContext,
-                    R.drawable.ic_menu
-                ),
-                ContextCompat.getDrawable(
-                    applicationContext,
-                    R.drawable.ic_baseline_close_24
-                )
-            )
+            navigationIconClickListener
         )
     }
 
@@ -120,26 +126,32 @@ class MainActivity : AppCompatActivity() {
         monday_button.setOnClickListener {
             currentDay = getString(R.string.monday_day_1)
             navController.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+            navigationIconClickListener.closeBackdrop()
         }
         tuesday_button.setOnClickListener {
             currentDay = getString(R.string.tuesday_day_2)
             navController.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+            navigationIconClickListener.closeBackdrop()
         }
         wednesday_button.setOnClickListener {
             currentDay = getString(R.string.wednesday_day_3)
             navController.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+            navigationIconClickListener.closeBackdrop()
         }
         thursday_button.setOnClickListener {
             currentDay = getString(R.string.thursday_day_4)
             navController.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+            navigationIconClickListener.closeBackdrop()
         }
         friday_button.setOnClickListener {
             currentDay = getString(R.string.friday_day_5)
             navController.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+            navigationIconClickListener.closeBackdrop()
         }
         saturday_button.setOnClickListener {
             currentDay = getString(R.string.saturday_day_6)
             navController.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+            navigationIconClickListener.closeBackdrop()
         }
     }
 

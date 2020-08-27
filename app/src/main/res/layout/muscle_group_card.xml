@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/muscle_group_image_view"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="8dp"
             />
 
@@ -30,10 +30,12 @@
 
         <Button
             android:id="@+id/expand_exercises_button"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:clickable="false"
             android:theme="@style/MuscleItemButtonStyle"
-            android:layout_gravity="bottom|center"/>
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center|end"/>
 
 
 <!--        <Button-->

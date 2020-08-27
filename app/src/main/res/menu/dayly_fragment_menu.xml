@@ -6,6 +6,7 @@
         android:id="@+id/menu_add_new_muscle_group"
         app:showAsAction="always"
         android:title="Add Muscles"
+        android:icon="@drawable/add_muscles_icon"
         />
 
 </menu>

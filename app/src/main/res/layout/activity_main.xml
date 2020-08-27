@@ -19,24 +19,9 @@
         android:fitsSystemWindows="true"
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:paddingTop="50dp"
-            android:paddingBottom="100dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            >
-
-            <include layout="@layout/backdrop"/>
-
-        </LinearLayout>
-
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="357dp"
+            android:layout_height="280dp"
             android:fitsSystemWindows="true"
             app:expanded="true"
             app:liftOnScroll="true"
@@ -72,6 +57,23 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <LinearLayout
+            android:id="@+id/linear_layout_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingTop="35dp"
+            android:paddingBottom="00dp"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            >
+
+            <include layout="@layout/backdrop"
+                android:id="@+id/backdrop_layout"
+                />
+
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/product_grid"
@@ -80,6 +82,7 @@
             android:fitsSystemWindows="false"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             android:background="@android:color/white">
+
 
             <fragment
                 android:id="@+id/nav_host_fragment"

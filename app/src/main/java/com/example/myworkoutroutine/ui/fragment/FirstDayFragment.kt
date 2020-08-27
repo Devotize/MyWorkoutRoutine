@@ -91,7 +91,6 @@ class FirstDayFragment : Fragment(){
         first_day_recycler_view.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         first_day_recycler_view.layoutManager = layoutManager
-        var isCompleted = true
 
         adapter.addAll(listOfExpandableGroup)
 
@@ -103,6 +102,8 @@ class FirstDayFragment : Fragment(){
 
         val onSwipeToDeleteCallback = object : SwipeToDeleteCallback(requireContext()) {
 
+            var isCompleted = false
+
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 if (direction == ItemTouchHelper.LEFT) {
                     deleteItem(viewHolder)
@@ -110,18 +111,30 @@ class FirstDayFragment : Fragment(){
 
                 if (direction == ItemTouchHelper.RIGHT) {
 
-//                    isCompleted = !isCompleted
+
+                    isCompleted = !isCompleted
                     if (isCompleted) {
-                        viewHolder.itemView.muscle_group_frame_layout.setBackgroundColor(Color.GREEN)
-                        Toast.makeText(context, "${viewHolder.itemView.muscle_group_text_view.text} comlepted", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Is completed: $isCompleted (completed)", Toast.LENGTH_SHORT).show()
+                        val v = viewHolder.itemView
+                        v.muscle_group_frame_layout.setBackgroundColor(Color.GREEN)
+                        v.refreshDrawableState()
+                        v.muscle_group_frame_layout.invalidate()
+                        v.muscle_group_frame_layout.refreshDrawableState()
+                        v.invalidate()
                     } else {
-                        viewHolder.itemView.muscle_group_frame_layout.setBackgroundColor(Color.GREEN)
+                        Toast.makeText(context, "Is completed: $isCompleted (uncompleted)", Toast.LENGTH_SHORT).show()
+                        val v = viewHolder.itemView
+                        v.muscle_group_frame_layout.setBackgroundColor(Color.BLACK)
+                        v.refreshDrawableState()
+                        v.muscle_group_frame_layout.invalidate()
+                        v.muscle_group_frame_layout.refreshDrawableState()
+                        v.invalidate()
                     }
                     adapter.notifyItemChanged(viewHolder.adapterPosition)
-                    adapter.notifyItemChanged(viewHolder.adapterPosition)
-                    adapter.getItem(viewHolder.adapterPosition).notifyChanged()
+
                 }
             }
+
 
         }
 

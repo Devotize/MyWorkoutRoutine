@@ -13,8 +13,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/first_day_recycler_view"
+            android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </androidx.core.widget.NestedScrollView>

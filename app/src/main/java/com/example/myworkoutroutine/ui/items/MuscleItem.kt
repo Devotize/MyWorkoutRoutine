@@ -1,6 +1,7 @@
 package com.example.myworkoutroutine.ui.items
 
 import android.content.Context
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -34,10 +35,13 @@ class MuscleItem(context: Context, private val muscle: String = ""): Item(), Exp
         itemView.muscle_group_image_view.setImageDrawable(image)
         itemView.expand_exercises_button.setBackgroundResource(getArrowImage())
 
-        itemView.expand_exercises_button.setOnClickListener {
+        itemView.setOnClickListener {
             expandableGroup.onToggleExpanded()
             itemView.expand_exercises_button.setBackgroundResource(getArrowImage())
         }
+//        itemView.expand_exercises_button.setOnClickListener {
+//
+//        }
 
     }
 

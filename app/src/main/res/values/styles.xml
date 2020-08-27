@@ -22,7 +22,7 @@
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="AppTheme.MuscleGroupTitle" parent="TextAppearance.MaterialComponents.Button">
+    <style name="AppTheme.MuscleGroupTitle" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>

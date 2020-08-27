@@ -22,12 +22,12 @@ abstract class SwipeToDeleteCallback(val context: Context): TouchCallback() {
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
-        val swipeFlagMuscleItem = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        val swipeFlagMuscleItem = ItemTouchHelper.LEFT
         val swipeFlagExerciseItem = 0
         val dragFlag = ItemTouchHelper.DOWN or ItemTouchHelper.UP
         Log.d("SwipeToDeleteCallback","Item view type: ${viewHolder.itemViewType}")
         return if (viewHolder.itemViewType == MuscleItem(context).viewType) {
-            makeMovementFlags(dragFlag, swipeFlagMuscleItem)
+            makeMovementFlags(0, swipeFlagMuscleItem)
         } else {
             ItemTouchHelper.Callback.makeMovementFlags(0, swipeFlagExerciseItem)
         }
