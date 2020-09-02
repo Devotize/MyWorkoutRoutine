@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         createDefaultSchedule()
 
+
     }
 
     private fun addBottomMarginForLayout() {

@@ -9,7 +9,7 @@ import com.example.myworkoutroutine.database.entity.Exercise
 import com.example.myworkoutroutine.database.entity.MuscleGroupModel
 import com.example.myworkoutroutine.database.entity.ToolbarImageEntity
 
-@Database(entities = [MuscleGroupModel::class, Exercise::class, ToolbarImageEntity::class], version = 6)
+@Database(entities = [MuscleGroupModel::class, Exercise::class, ToolbarImageEntity::class], version = 7)
 abstract class MuscleGroupDatabase: RoomDatabase() {
 
     abstract fun muscleGroupDao(): MuscleGroupDao

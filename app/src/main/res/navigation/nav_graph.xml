@@ -14,8 +14,4 @@
             android:id="@+id/action_firstDayFragment_to_firstDayFragment"
             app:destination="@id/firstDayFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/secondDayFragment"
-        android:name="com.example.myworkoutroutine.ui.fragment.SecondDayFragment"
-        android:label="SecondDayFragment" />
 </navigation>

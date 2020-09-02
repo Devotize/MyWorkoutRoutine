@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myworkoutroutine.R
 import com.example.myworkoutroutine.helperЕ.MuscleGroup
@@ -12,6 +13,7 @@ import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.TouchCallback
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
+import kotlinx.android.synthetic.main.fragment_first_day.view.*
 import kotlinx.android.synthetic.main.muscle_group_card.view.*
 
 class MuscleItem(context: Context, private val muscle: String = ""): Item(), ExpandableItem {

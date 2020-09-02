@@ -9,7 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.os.health.TimerStat
 import android.util.Log
 import android.view.*
 import android.widget.Toast
@@ -19,28 +18,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myworkoutroutine.ui.items.MuscleItem
 import com.example.myworkoutroutine.R
-import com.example.myworkoutroutine.adapter.RecyclerMusclesAdapter
 import com.example.myworkoutroutine.adapter.SwipeToDeleteCallback
 import com.example.myworkoutroutine.database.entity.Exercise
 import com.example.myworkoutroutine.database.entity.MuscleGroupModel
 import com.example.myworkoutroutine.database.repo.MuscleGroupRepo
 import com.example.myworkoutroutine.ui.MainActivity.Companion.currentDay
 import com.example.myworkoutroutine.ui.items.ExerciseItem
+import com.example.myworkoutroutine.ui.items.RecyclerItem
+import com.example.myworkoutroutine.ui.sheet.BottomAddMuscleSheet
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.*
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
-import kotlinx.android.synthetic.main.exercise_item_layout.view.*
 import kotlinx.android.synthetic.main.fragment_first_day.*
 import kotlinx.android.synthetic.main.muscle_group_card.view.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 
 class FirstDayFragment : Fragment(){
 
-    private lateinit var adapter: GroupAdapter<GroupieViewHolder>
-    private lateinit var listOfExpandableGroup: MutableList<ExpandableGroup>
+    lateinit var adapter: GroupAdapter<GroupieViewHolder>
+    lateinit var listOfExpandableGroup: MutableList<ExpandableGroup>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,20 +66,33 @@ class FirstDayFragment : Fragment(){
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        Log.d("FirstDayFragment", "On Pause")
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.dayly_fragment_menu, menu)
 
         val menuItem = menu.findItem(R.id.menu_add_new_muscle_group)
         menuItem.setOnMenuItemClickListener {
-            RecyclerMusclesAdapter(
-                requireContext()
-            ).showAddMusclesDialog(currentDay){
-                Log.d("Callback", "Callback given!")
-//                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+//            RecyclerMusclesAdapter(
+//                requireContext()
+//            ).showAddMusclesDialog(currentDay){
+//                Log.d("Callback", "Callback given!")
+////                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.action_firstDayFragment_to_firstDayFragment)
+//                listOfExpandableGroup = returnListOfExpandableGroups().toMutableList()
+//                adapter.add(listOfExpandableGroup.last())
+//            }
+
+            val myBottomSheet = BottomAddMuscleSheet()
+
+            activity?.supportFragmentManager?.let { it1 -> myBottomSheet.show(it1, BottomAddMuscleSheet.TAG) }
+            myBottomSheet.onItemAdded {
                 listOfExpandableGroup = returnListOfExpandableGroups().toMutableList()
                 adapter.add(listOfExpandableGroup.last())
+                myBottomSheet.dismiss()
             }
-
             true
         }
     }
@@ -89,7 +100,7 @@ class FirstDayFragment : Fragment(){
 
     private fun initRecyclerView() {
         first_day_recycler_view.adapter = adapter
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         first_day_recycler_view.layoutManager = layoutManager
 
         adapter.addAll(listOfExpandableGroup)
@@ -175,12 +186,13 @@ class FirstDayFragment : Fragment(){
             val exerciseSection = Section()
 
             val exercisesList: List<Exercise> = MuscleGroupRepo(requireContext()).getExercisesByMuscle(it.muscleName)
-            exercisesList.forEach {
-                val image = fromByteArrayToDrawable(it.image)
-                val exerciseItem = ExerciseItem(it.name, image, it.duration)
-                Log.d("FirstDayFragment", "Exercise item view type: ${exerciseItem.viewType}")
-                exerciseSection.add(exerciseItem)
-            }
+            exerciseSection.add(RecyclerItem(exercisesList, requireContext()))
+//            exercisesList.forEach {
+//                val image = fromByteArrayToDrawable(it.image)
+//                val exerciseItem = ExerciseItem(it.name, image, it.duration)
+//                Log.d("FirstDayFragment", "Exercise item view type: ${exerciseItem.viewType}")
+//                exerciseSection.add(exerciseItem)
+//            }
 
             ExpandableGroup(MuscleItem(requireContext(), it.muscleName), false).apply {
                 add(exerciseSection)

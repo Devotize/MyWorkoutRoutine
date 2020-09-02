@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="bottomSheetDialogTheme">@style/ModalBottomSheetDialog</item>
     </style>
 
     <style name="Widget.AppTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
@@ -33,4 +34,23 @@
 
     </style>
 
+    <style name="AppTheme.ShapeAppearance" parent="ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Day">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="ModalBottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="behavior_draggable">true</item>
+        <item name="behavior_hideable">true</item>
+        <item name="behavior_peekHeight">400dp</item>
+        <item name="shapeAppearanceOverlay">@style/AppTheme.ShapeAppearance</item>
+        <item name="behavior_fitToContents">true</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
+    </style>
+    
 </resources>

@@ -1,4 +1,4 @@
-package com.example.myworkoutroutine.adapter
+package com.example.myworkoutroutine.helper
 
 import android.app.AlertDialog
 import android.content.Context
@@ -9,7 +9,7 @@ import com.example.myworkoutroutine.database.entity.MuscleGroupModel
 import com.example.myworkoutroutine.database.repo.MuscleGroupRepo
 import com.example.myworkoutroutine.helperЕ.MuscleGroup
 
-class RecyclerMusclesAdapter(private val context: Context) {
+class MuscleDialog(private val context: Context) {
 
     private val TAG = "RecyclerMuscleAdapter"
 
