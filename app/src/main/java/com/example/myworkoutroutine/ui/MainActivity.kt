@@ -46,7 +46,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.backdrop.*
 import java.io.ByteArrayOutputStream
 
-//second commit
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+// set fullscreen
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         addBottomMarginForLayout()

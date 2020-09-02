@@ -13,7 +13,7 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.muscle_sheet_card.view.*
 
 class MuscleSheetItem(muscle: MuscleGroup): Item() {
-
+//
     val currentMuscle = muscle
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {

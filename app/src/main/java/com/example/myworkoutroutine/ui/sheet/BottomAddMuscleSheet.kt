@@ -60,7 +60,7 @@ class BottomAddMuscleSheet() : BottomSheetDialogFragment() {
 
 
     }
-
+//
     fun onItemAdded(callback: (MuscleGroupModel) -> Unit) {
         adapter.setOnItemClickListener { item, view ->
             val muscle: MuscleSheetItem = item as MuscleSheetItem
