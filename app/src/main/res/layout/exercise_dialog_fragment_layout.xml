@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tools:background="@color/colorAccent"
+    tools:context="com.example.myworkoutroutine.ui.ExerciseDialogFragment"
+    android:id="@+id/dialog_exercise_constraint_layout"
+    >
+
+    <ImageButton
+        android:id="@+id/close_dialog_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="15dp"
+        android:background="@drawable/ic_baseline_close_24"
+        android:contentDescription="@string/close_button"
+        />
+
+    <ImageView
+        android:id="@+id/dialog_exercise_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="90dp"
+        tools:src="@drawable/bench_dips_icon"/>
+
+    <TextView
+        android:id="@+id/dialog_exercise_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/dialog_exercise_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="15dp"
+        tools:text="1:00"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="22sp"
+        android:fontFamily="monospace"
+        android:textStyle="bold"
+        />
+    <Button
+        android:id="@+id/number_of_repeat_button"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:layout_constraintTop_toBottomOf="@id/dialog_exercise_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="4"
+        android:visibility="gone"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

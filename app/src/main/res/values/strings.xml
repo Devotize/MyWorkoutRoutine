@@ -15,5 +15,6 @@
     <string name="back">Back</string>
     <string name="biceps">Biceps</string>
     <string name="shoulders">Shoulders</string>
+    <string name="close_button">close button</string>
 
 </resources>

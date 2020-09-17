@@ -52,5 +52,13 @@
     <style name="ModalBottomSheetDialog" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
     </style>
+
+    <style name="ExerciseActivity" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:theme">@style/AppTheme</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
     
 </resources>

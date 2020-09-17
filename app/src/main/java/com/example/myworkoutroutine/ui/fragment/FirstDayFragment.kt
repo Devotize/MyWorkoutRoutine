@@ -204,10 +204,6 @@ class FirstDayFragment : Fragment(){
 
     }
 
-    private fun fromByteArrayToDrawable(byteArray: ByteArray): Drawable {
-        return BitmapDrawable(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size))
-    }
-
     private fun getMusclesForTheDay(): List<MuscleGroupModel> {
 
         return MuscleGroupRepo(requireContext()).getMusclesByDay(currentDay)
